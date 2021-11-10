@@ -58,9 +58,9 @@ Person.prototype.toString = function () {
   return `${this.name}, ${this.age}`;
 };
 
-const kyler = new Person("Kyler", 25);
+// const kyler = new Person("Kyler", 25);
 
-console.log(kyler.toString());
+// console.log(kyler.toString());
 
 /*
   TASK 2
@@ -76,7 +76,16 @@ console.log(kyler.toString());
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {}
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+
+Car.prototype.fill = function (gallons) {
+  return (this.tank += gallons);
+};
 
 /*
   TASK 3
@@ -85,7 +94,16 @@ function Car() {}
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {}
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
+}
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`;
+};
 
 /* 
   TASK 4
@@ -93,7 +111,7 @@ function Baby() {}
   1. global binding is when the 'this' keyword binds to the window (usually this is an error, not intentional) 
   2. implicit binding is when the 'this' keyword binds to the object left of the dot (this accounts for the majority of use cases) 
   3. explicit binding is when the 'this' keyword is used when .call, .bind, or .apply is used and will be explicitly defined
-  4. new binding is when the 'this' keyword is used when creating a new object from a constructor function ('this' will refer to that specific item)
+  4. new binding is when the 'this' keyword is used when creating a new object from a constructor function ('this' will refer to that specific instance)
 */
 
 ///////// END OF CHALLENGE /////////
