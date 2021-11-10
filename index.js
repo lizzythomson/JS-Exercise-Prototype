@@ -19,7 +19,6 @@ Airplane.prototype.land = function () {
   this.isFlying = false;
 };
 
-
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -39,15 +38,29 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
 
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+};
 
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
 
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+};
 
+const kyler = new Person("Kyler", 25);
 
-
+console.log(kyler.toString());
 
 /*
   TASK 2
@@ -63,10 +76,7 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
-}
-
+function Car() {}
 
 /*
   TASK 3
@@ -75,32 +85,28 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
-}
-
+function Baby() {}
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. global binding is when the 'this' keyword binds to the window (usually this is an error, not intentional) 
+  2. implicit binding is when the 'this' keyword binds to the object left of the dot (this accounts for the majority of use cases) 
+  3. explicit binding is when the 'this' keyword is used when .call, .bind, or .apply is used and will be explicitly defined
+  4. new binding is when the 'this' keyword is used when creating a new object from a constructor function ('this' will refer to that specific item)
 */
-
 
 ///////// END OF CHALLENGE /////////
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working!');
-  return 'bar';
+function foo() {
+  console.log("its working!");
+  return "bar";
 }
 foo();
 module.exports = {
   foo,
-  Person, 
+  Person,
   Car,
-  Baby
-}
+  Baby,
+};
